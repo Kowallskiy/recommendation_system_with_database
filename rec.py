@@ -1,6 +1,8 @@
 import os
 import pandas as pd
 import psycopg2
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
 
 # Fetching environment variables
 db_name = os.environ.get('DB_NAME')
@@ -36,3 +38,22 @@ def recommend_movies_based_on_genre(movie_title):
     
 recommendations = recommend_movies_based_on_genre('Fight Club (1999)')
 print(recommendations)
+
+query = "SELECT movie_id, user_id, rating FROM ratings;"
+
+ratings_df = pd.read_sql_query(query, conn)
+
+user_item_matrix = ratings_df.pivot_table(index='user_id', columns='movie_id', values='rating')
+# Transopse the martix so rows represent movies
+movie_user_matrix = user_item_matrix.transpose()
+
+# Fill NaN values with 0s as cosine similarity does not work with NaN values
+movie_user_matrix_filled = movie_user_matrix.fillna(0)
+
+cosine_sim = cosine_similarity(movie_user_matrix_filled)
+
+cosine_sim_df = pd.DataFrame(cosine_sim, index=movie_user_matrix_filled.index, columns=movie_user_matrix_filled.index)
+
+def recommend_movies_cosine_similarity(movie_title, num_recommendations=5):
+
+    pass
