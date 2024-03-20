@@ -2,7 +2,6 @@ import os
 import pandas as pd
 import psycopg2
 from sklearn.metrics.pairwise import cosine_similarity
-import numpy as np
 
 db_name = os.environ.get('DB_NAME')
 db_user = os.environ.get('DB_USER')
