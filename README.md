@@ -4,7 +4,7 @@
 This project explores various techniques to build and compare movies recommendation systems, including Content-based Filtering, Collaborative Filtering, and a Hybrid approach. Additionally, I implemented advanced methods using Neural Collaborative Filtering (NCF) with PyTorch to enhance recommendation quality.
 
 ## Features
-- **Content-based Filtering**: Recommends movies by comparing genre similarities.
+- **Content-based Filtering**: **Recommends** movies by comparing genre similarities.
 - **Collaborative Filtering**: Utilizes user-movie interactions to find and recommend similar movies.
 - **Hybrid Filtering**: Combines Content-based and Collaborative Filtering for improved recommendations.
 - **Neural Collaborative Filtering (NCF)**: Implements a sophisticated model using PyTorch that leverages user-item interaction data.
